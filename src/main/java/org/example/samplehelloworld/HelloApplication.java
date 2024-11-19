@@ -13,8 +13,9 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("LoginGUI.fxml"));
-        primaryStage.setTitle("Gestione Login/Registrazione");
+        primaryStage.setTitle("UniFix");
         primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
