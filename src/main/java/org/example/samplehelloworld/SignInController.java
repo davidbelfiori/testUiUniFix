@@ -40,7 +40,7 @@ public class SignInController {
     private PasswordField passwordField;
     @FXML
     public void handleLogIn() {
-        controllaCredenziali check=new controllaCredenziali();
+        ControllaCredeenziali check=new ControllaCredeenziali();
         String email =emailField.getText();
         String password = passwordField.getText();
 

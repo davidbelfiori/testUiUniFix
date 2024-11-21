@@ -5,7 +5,7 @@ import javafx.scene.control.TextField;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class controllaCredenziali {
+public class ControllaCredeenziali {
 
     public boolean checkMail(TextField emailTextField) {
         String email = emailTextField.getText();

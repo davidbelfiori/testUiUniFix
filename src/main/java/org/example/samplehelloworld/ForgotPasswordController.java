@@ -36,7 +36,7 @@ public class ForgotPasswordController {
     }
 
     public void handleToNextPage() {
-        controllaCredenziali check=new controllaCredenziali();
+        ControllaCredeenziali check=new ControllaCredeenziali();
         String errorMessage= """
                 Email non inserita o non appartenente all'ateaneo\s
                 l'email associata al tuo account unifix segue la tipologia\s
