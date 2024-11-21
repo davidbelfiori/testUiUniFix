@@ -12,10 +12,9 @@ import java.io.IOException;
 
 public class ForgotPasswordController {
 
-    public Label handleToLoginLabel;
-
-    public TextField emailTextField;
-    public Button NextPage;
+    private Label handleToLoginLabel;
+    private TextField emailTextField;
+    private Button nextPage;
 
 
 

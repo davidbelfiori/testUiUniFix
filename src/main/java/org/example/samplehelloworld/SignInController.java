@@ -14,10 +14,7 @@ import java.io.IOException;
 public class SignInController {
 
 
-    @FXML
-    public Label handleToForgotPassword;
-    @FXML
-    public Label loginLabel;
+
 
     public void handleGoToRegistrazione(javafx.scene.input.MouseEvent event) {
         try {
