@@ -6,22 +6,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class ForgotPasswordController {
 
-
     private static String email;
-    public TextField emailTextField;
-    private Button nextPage;
     @FXML
-    public PasswordField newPasswordField;
+    private TextField emailTextField;
     @FXML
-    public PasswordField newPasswordFieldConfirm;
+    private TextField codeTextField;
+    @FXML
+    private PasswordField newPasswordField;
+    @FXML
+    private PasswordField newPasswordFieldConfirm;
 
+     // Variabile per memorizzare l'email dell'utente
 
     public void handleGoToLogin(MouseEvent mouseEvent) {
 
@@ -39,22 +40,21 @@ public class ForgotPasswordController {
 
     }
 
-    public void handleToNextPage(MouseEvent mouseEvent) {
-        ControllaCredeenziali check=new ControllaCredeenziali();
-        PopUp popUp= new PopUp();
 
+    public void handleToNextPage(MouseEvent mouseEvent) {
+        ControllaCredeenziali check = new ControllaCredeenziali();
         if (!check.checkMail(emailTextField)) {
-            popUp.showErrorPopup("Errore","Dati Mancanti/Errati", """
-                Email non inserita o non appartenente all'ateaneo\s
-                l'email associata al tuo account unifix segue la tipologia\s
-                nome.cognome@uniroma2.eu""");
-        }else {
+            PopUp popUp = new PopUp();
+            popUp.showErrorPopup("Errore", "Email non valida", "Inserisci un'email corretta.");
+        } else {
+            // Genera e "invia" il codice
+            String generatedCode = CodeManager.getInstance().generateCode();
+            System.out.println("Codice generato per l'email " + email + ": " + generatedCode);
+            // Passa alla pagina successiva
             try {
-                // Carica la scena del login
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("forgotPw2.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("ForgotPwCode.fxml"));
                 Parent root = loader.load();
                 email=emailTextField.getText();
-                // Ottieni la finestra corrente e imposta la nuova scena
                 Stage stage = (Stage) ((javafx.scene.Node) mouseEvent.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));
             } catch (IOException e) {
@@ -63,12 +63,36 @@ public class ForgotPasswordController {
         }
     }
 
+  // TODO: andrebbe implelemtato che il codice viene mandato via mail
+    public void handleVerifyCode(MouseEvent mouseEvent) {
+        String inputCode = codeTextField.getText();
+        if (CodeManager.getInstance().verifyCode(inputCode)) {
+            PopUp popUp = new PopUp();
+            popUp.showSuccessPopup("Successo", "Codice verificato con successo!");
 
-    public void handleToChangePassword(MouseEvent mouseEvent){
-        ControllaCredeenziali check=new ControllaCredeenziali();
-        if (check.doubleCheckPw(newPasswordField, newPasswordFieldConfirm)){
-            System.out.println("Email:"+email+"\n"+"Nuova password: "+newPasswordField.getText());
+            // Passa alla pagina di modifica password
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("ForgotPwChange.fxml"));
+                Parent root = loader.load();
+
+                Stage stage = (Stage) ((javafx.scene.Node) mouseEvent.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            PopUp popUp = new PopUp();
+            popUp.showErrorPopup("Errore", "Codice non valido", "Inserisci il codice corretto.");
         }
     }
+
+    public void handleToChangePassword(MouseEvent mouseEvent) {
+        ControllaCredeenziali check = new ControllaCredeenziali();
+        if (check.doubleCheckPw(newPasswordField, newPasswordFieldConfirm)) {
+            System.out.println("Email: " + email);
+            System.out.println("Nuova password: " + newPasswordField.getText());
+        }
+    }
+
 
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.samplehelloworld.ForgotPasswordController">
+   <children>
+      <ImageView fitHeight="217.0" fitWidth="273.0" layoutX="34.0" layoutY="-27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../photo/UniFix_transparent-.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="670.0" fitWidth="647.0" layoutX="555.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../photo/20602818_6325245.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="135.0" layoutY="271.0" text="Recupero password">
+         <font>
+            <Font name="Segoe UI" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="230.0" layoutY="324.0" text="Codice OTP">
+         <font>
+            <Font name="Segoe UI Light" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="codeTextField" layoutX="146.0" layoutY="382.0" prefHeight="50.0" prefWidth="300.0" promptText="Codice" style="-fx-background-radius: 20;">
+         <font>
+            <Font name="Segoe UI" size="19.0" />
+         </font>
+      </TextField>
+      <Button fx:id="nextPage" layoutX="172.0" layoutY="468.0" mnemonicParsing="false" onMouseClicked="#handleVerifyCode" prefHeight="50.0" prefWidth="230.0" style="-fx-background-radius: 20; -fx-background-color: #17274B;" text="Avanti" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semilight" size="21.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
